@@ -1,1 +1,14 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GLOBIT24 Autorización</title></head><body style="font-family:system-ui;max-width:640px;margin:3rem auto;padding:0 16px"><h1>Autorización recibida</h1><p>Ya puedes cerrar esta ventana.</p></body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GLOBIT24 Autorización</title></head>
+<body style="font-family:system-ui;max-width:640px;margin:3rem auto;padding:0 16px">
+<h1>Autorización recibida</h1>
+<p id="msg">Ya puedes cerrar esta ventana.</p>
+<textarea id="code" readonly rows="3" style="width:100%;display:none;font:14px monospace"></textarea>
+<button id="copy" style="display:none;margin-top:8px;padding:8px 14px">Copiar código</button>
+<script>
+var p=new URLSearchParams(location.search),c=p.get('code'),e=p.get('error');
+if(c){document.getElementById('msg').textContent='Copia este código y úsalo enseguida (caduca en pocos minutos):';
+var t=document.getElementById('code');t.value=c;t.style.display='block';
+var b=document.getElementById('copy');b.style.display='inline-block';
+b.onclick=function(){t.select();try{navigator.clipboard.writeText(c)}catch(_){document.execCommand('copy')}b.textContent='Copiado'};}
+else if(e){document.getElementById('msg').textContent='Error: '+e;}
+</script></body></html>
